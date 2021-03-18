@@ -4,18 +4,24 @@ import { buildSchema } from 'graphql';
 
 const schema = buildSchema(`
     type Query{
-        friend: Friend
+        getFriend(id: ID): Friend
     }
 
     type Friend{
         id: ID
         firstName: String
         lastName: String
-        email: [Email]!
+        email: String
     }
 
-    type Email {
+    input FriendInput {
+        firstName: String
+        lastName: String!
         email: String
+    }
+
+    type Mutation {
+        createFriend(input: FriendInput): Friend
     }
 `);
 
