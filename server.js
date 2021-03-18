@@ -1,21 +1,34 @@
 'use strict';
 
-import express from 'express';
-import schema from './schema.js';
-import { graphqlHTTP } from 'express-graphql';
+(async () => {
+    const { default: express } = await import('express');
+    const { default: schema } = await import('./schema.js');
+    const { graphqlHTTP } = await import('express-graphql');
 
-const app = express();
-const port = process.env.PORT || 4040;
+    const app = express();
+    const port = process.env.PORT || 4040;
 
-app.get('/', (req, res) => {
-    res.send('Hello!');
-});
+    app.get('/', (req, res) => {
+        res.send('Hello!');
+    });
 
-const root = { hello: () => 'Hi from QraphQL' };
-app.use('/graphql', graphqlHTTP({
-    schema,
-    rootValue: root,
-    graphiql: true,
-}))
+    const root = {
+        friend: () => ({
+            'id': 1234,
+            firstName: 'John',
+            lastName: 'Doe',
+            email: [
+                { email: 'john@prov.com' },
+                { email: 'mrdoe@yahoo.com' },
+            ],
+        })
+    };
 
-app.listen(port, () => console.log(`server running on port ${port}`));
+    app.use('/graphql', graphqlHTTP({
+        schema,
+        rootValue: root,
+        graphiql: true,
+    }));
+
+    app.listen(port, () => console.log(`server running on port ${port}`));
+})();
