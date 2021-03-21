@@ -6,6 +6,13 @@ import { resolvers } from './resolvers.js';
 const typeDefs = `
 type Query{
     getFriend(id: ID): Friend
+    getVehicle(id: Int): Vehicle
+}
+
+type Vehicle{
+    id: Int
+    uid: Int
+    title: String
 }
 
 type Friend{

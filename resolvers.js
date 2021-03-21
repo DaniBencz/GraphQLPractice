@@ -1,5 +1,7 @@
 'use strict';
 
+import pool from './dbConnection.js';
+
 const friendDatabase = {}; // an in-memory mock-db
 class Friend {
     constructor(id, { firstName, lastName, age, isFriend, gender }) {
@@ -19,6 +21,11 @@ export const resolvers = {
             // return friendDatabase[id]
             return new Friend(id, friendDatabase[id]);
         },
+        getVehicle: async (_, { id }) => {
+            const [rows] = await pool.query(`SELECT nid as id, title, uid FROM sky_node
+                WHERE nid = ? AND type = 'jarmu'`, id);
+            return rows[0];
+        }
     },
     Mutation: {
         createFriend: async (_, { input }) => { // _, !!!
