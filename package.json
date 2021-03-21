@@ -4,7 +4,7 @@
   "description": "Simple practise project for GraphQL with Node and MySQL",
   "main": "server.js",
   "scripts": {
-    "dev": "nodemon server",
+    "dev": "nodemon -r dotenv/config server",
     "start": "node server.js"
   },
   "type": "module",
@@ -12,7 +12,10 @@
     "type": "git",
     "url": "git+https://github.com/DaniBencz/GraphQLPractise.git"
   },
-  "keywords": ["express", "graphql"],
+  "keywords": [
+    "express",
+    "graphql"
+  ],
   "author": "Daniel Bencz",
   "license": "ISC",
   "bugs": {
@@ -23,6 +26,11 @@
     "express": "^4.17.1",
     "express-graphql": "^0.12.0",
     "graphql": "^15.5.0",
-    "nodemon": "^2.0.7"
+    "graphql-tools": "^7.0.4",
+    "mysql2": "^2.2.5"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7",
+    "dotenv": "^8.2.0"
   }
 }
