@@ -4,51 +4,33 @@ import { makeExecutableSchema } from '@graphql-tools/schema';
 import { resolvers } from './resolvers.js';
 
 const typeDefs = `
-type Query{
-    getFriend(id: ID): Friend
-    getVehicle(id: Int): Vehicle
-}
-
+# - - - TYPES - - -
 type Vehicle{
     id: Int
-    uid: Int
     title: String
     status: Boolean
 }
 
-type Friend{
-    id: ID
-    firstName: String
-    lastName: String
-    age: Int
-    isFriend: Boolean
-    gender: Gender
-}
-
-enum Gender {
-    Male
-    Female
-    Other
-}
-
-input VehicleInput {
-    id: Int!
-    uid: Int
-    title: String
-    status: Boolean
-}
-
-input FriendInput {
-    firstName: String
-    lastName: String!
-    age: Int
-    isFriend: Boolean
-    gender: Gender
+type Query{
+  getVehicle(id: Int): Vehicle
 }
 
 type Mutation {
-    createFriend(input: FriendInput): Friend
-    updateVehicle(input: VehicleInput): Vehicle
+  createVehicle(input: NewVehicle): Vehicle
+  updateVehicle(input: ReadVehicle): Vehicle
+  #deleteVehicle(input: ReadVehicle): String
+}
+
+# - - -  INPUTS - - -
+input ReadVehicle {
+    id: Int!
+    title: String
+    status: Boolean
+}
+
+input NewVehicle{
+  title: String!
+  status: Boolean
 }
 
 # we need to tell the server which types represent the root query
