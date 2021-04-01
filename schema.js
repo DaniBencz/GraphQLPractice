@@ -18,7 +18,7 @@ type Query{
 type Mutation {
   createVehicle(input: NewVehicle): Vehicle
   updateVehicle(input: ReadVehicle): Vehicle
-  #deleteVehicle(input: ReadVehicle): String
+  deleteVehicle(input: ReadVehicle): String
 }
 
 # - - -  INPUTS - - -
