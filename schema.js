@@ -8,7 +8,6 @@ const typeDefs = `
 type Vehicle{
     id: Int
     title: String
-    status: Boolean
 }
 
 type Query{
@@ -25,7 +24,6 @@ type Mutation {
 input ReadVehicle {
     id: Int!
     title: String
-    status: Boolean
 }
 
 input NewVehicle{
@@ -42,5 +40,4 @@ input NewVehicle{
 `;
 
 const schema = makeExecutableSchema({ typeDefs, resolvers });
-
 export { schema };
