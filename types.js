@@ -1,8 +1,5 @@
 'use strict';
 
-import { makeExecutableSchema } from '@graphql-tools/schema';
-import { resolvers } from './resolvers.js';
-
 const typeDefs = `
 # - - - TYPES - - -
 type Vehicle{
@@ -39,5 +36,4 @@ input NewVehicle{
 # }
 `;
 
-const schema = makeExecutableSchema({ typeDefs, resolvers });
-export { schema };
+export { typeDefs };
